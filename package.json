@@ -1,0 +1,15 @@
+{
+  "name": "algorithms-and-data-structures",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+    "jest": "^23.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "author": "",
+  "license": "ISC"
+}
