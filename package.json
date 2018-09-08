@@ -6,9 +6,27 @@
   "dependencies": {
     "jest": "^23.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "ts-jest": "^23.1.4",
+    "typescript": "^3.0.3"
+  },
   "scripts": {
     "test": "jest --watchAll"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "author": "",
   "license": "ISC"
