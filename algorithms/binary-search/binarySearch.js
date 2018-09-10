@@ -27,19 +27,25 @@ const binarySearchI = (arr, element) => {
 };
 
 // recursive
+const startFinish = (element, middle, arr, start, finish) => {
+  return element > arr[middle]
+    ? [middle + 1, finish]
+    : [start, middle - 1];
+};
+
 const _binarySearchR = (arr, element, start, finish) => {
   if (finish >= start) {
     let middle = Math.floor((finish + start) / 2);
-    if (element === arr[middle]) {
-      return true;
-    } else if (element > arr[middle]){
-      return _binarySearchR(arr, element, middle + 1, finish);
-    } else if (element < arr[middle]) {
-      return _binarySearchR(arr, element, start, middle - 1);
-    }
+
+    const result = startFinish(element, middle, arr, start, finish);
+
+    return (element === arr[middle])
+      ?  true
+      : _binarySearchR(arr, element, ...result);
   }
   return false;
 };
+
 const binarySearchR = (arr, element) => {
   return _binarySearchR(arr, element, 0, arr.length - 1);
 };
