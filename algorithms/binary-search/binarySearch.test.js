@@ -38,6 +38,8 @@ test('binarySearchR small array', () => {
 test('binarySearchR with big array', () => {
   const numbers = [1, 3, 9, 16, 29, 39, 41, 41, 99];
   expect(binarySearchR(numbers, 0)).toBe(false);
+  expect(binarySearchR(numbers, 9)).toBe(true);
+  expect(binarySearchR(numbers, 10)).toBe(false);
   expect(binarySearchR(numbers, 16)).toBe(true);
   expect(binarySearchR(numbers, 41)).toBe(true);
 });

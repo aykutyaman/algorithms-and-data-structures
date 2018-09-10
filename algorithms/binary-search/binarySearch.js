@@ -27,27 +27,18 @@ const binarySearchI = (arr, element) => {
 };
 
 // recursive
-const startFinish = (element, middle, arr, start, finish) => {
-  return element > arr[middle]
-    ? [middle + 1, finish]
-    : [start, middle - 1];
-};
+const divide = (arr, element, middle) => (
+  element > arr[middle]
+    ? arr.slice(middle + 1)
+    : arr.slice(0, middle)
+);
 
-const _binarySearchR = (arr, element, start, finish) => {
-  if (finish >= start) {
-    let middle = Math.floor((finish + start) / 2);
+const binarySearchR = (arr, element, middle = Math.floor(arr.length / 2)) => {
+  if (arr.length === 0) return false;
 
-    const result = startFinish(element, middle, arr, start, finish);
-
-    return (element === arr[middle])
-      ?  true
-      : _binarySearchR(arr, element, ...result);
-  }
-  return false;
-};
-
-const binarySearchR = (arr, element) => {
-  return _binarySearchR(arr, element, 0, arr.length - 1);
+  return (element === arr[middle])
+    ? true
+    : binarySearchR(divide(arr, element, middle), element);
 };
 
 module.exports = {
