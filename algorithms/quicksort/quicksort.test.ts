@@ -53,4 +53,11 @@ describe('quicksort', () => {
     quicksort(array);
     expect(array).toEqual(expected);
   });
+
+  test('time complexity', () => {
+    const f = jest.fn();
+    const array = [2, 1, 3, 4, 8, 5, 7, 6];
+    quicksort(array, f);
+    expect(f).toHaveBeenCalledTimes(6);
+  });
 });

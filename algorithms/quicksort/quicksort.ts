@@ -5,10 +5,13 @@ const swap = (array, start, end) => {
 }
 
 const partition = (
-  array: number[], start: number, end: number
+  array: number[], start: number, end: number, callback?: Function
 ): number => {
   const pivot = array[end];
   let pIndex = start;
+
+  if (callback) callback(pivot);
+
   for (let i = start; i < end; i++) {
     if (array[i] <= pivot) {
       swap(array, i, pIndex);
@@ -19,18 +22,22 @@ const partition = (
   return pIndex;
 }
 
-const quicksort = (
-  array: number[], start: number = 0, end: number = array.length - 1
+const _quicksort = (
+  array: number[], start: number, end: number, callback?: Function
 ): void => {
   if (start < end) {
-    let pIndex = partition(array, start, end);
-    quicksort(array, start, pIndex - 1);
-    quicksort(array, pIndex + 1, end);
+    let pIndex = partition(array, start, end, callback);
+    _quicksort(array, start, pIndex - 1, callback);
+    _quicksort(array, pIndex + 1, end, callback);
   }
+}
+
+const quicksort = (array: number[], callback?: Function): void => {
+  _quicksort(array, 0, array.length - 1, callback);
 }
 
 export {
   partition,
   swap,
-  quicksort
+  quicksort,
 }
