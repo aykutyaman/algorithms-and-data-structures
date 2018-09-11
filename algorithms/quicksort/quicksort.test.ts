@@ -54,10 +54,32 @@ describe('quicksort', () => {
     expect(array).toEqual(expected);
   });
 
-  test('time complexity', () => {
+});
+
+// https://bit.ly/2N5IFan
+describe('time complexities', () => {
+  // best case occurs generally when the list is in completly random manner
+  test('randomly mixed data - Ω(n log(n)) and Θ(n log(n))', () => {
     const f = jest.fn();
-    const array = [2, 1, 3, 4, 8, 5, 7, 6];
+    const array = [1, 9, 99, 13, 3, 11, 3, 15, 2, 20, 6, 14, 4, 12, 8, 16];
     quicksort(array, f);
-    expect(f).toHaveBeenCalledTimes(6);
+    expect(f).toHaveBeenCalledTimes(48);
   });
+
+  // Worst case occurs when the array is already sorted either in ascending or descending order.
+  test('already sorted in descending order - O(n^2) ', () => {
+    const f = jest.fn();
+    const array = [16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    quicksort(array, f);
+    expect(f).toHaveBeenCalledTimes(120);
+  });
+
+  // Worst case occurs when the array is already sorted either in ascending or descending order.
+  test('already sorted in ascending order - O(n^2)', () => {
+    const f = jest.fn();
+    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    quicksort(array, f);
+    expect(f).toHaveBeenCalledTimes(120);
+  });
+
 });

@@ -7,5 +7,10 @@ Even though the list isn't completely sorted yet, we know that the items are in 
 After this partitioning, the pivot is in its final position. This is called the partition operation.
 - Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values.
 
+## Complexity
+| Algorithm  |     Best    |   Average   |    Worst   |   Space  |
+| ---------- | ----------- | ----------- | ---------- | -------- |
+| Quick Sort | Ω(n log(n)) | Θ(n log(n)) |    O(n^2)  | O(log(n))|
+
 ## Resources
 - [Quicksort algorithm](https://www.youtube.com/watch?v=COk73cpQbFQ&t=111s), mycodeschool

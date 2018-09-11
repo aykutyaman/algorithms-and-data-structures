@@ -10,9 +10,8 @@ const partition = (
   const pivot = array[end];
   let pIndex = start;
 
-  if (callback) callback(pivot);
-
   for (let i = start; i < end; i++) {
+    if (callback) callback(pivot);
     if (array[i] <= pivot) {
       swap(array, i, pIndex);
       pIndex = pIndex + 1;
