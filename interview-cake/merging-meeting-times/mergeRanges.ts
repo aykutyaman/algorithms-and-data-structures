@@ -1,4 +1,9 @@
-const mergeRanges = ranges => {
+interface meeting {
+  startTime: number,
+  endTime: number
+}
+
+const mergeRanges = (ranges: meeting[]) => {
   const sorted = [...ranges].sort((x, y) => x.startTime - y.startTime);
   const merged = [sorted[0]];
 
