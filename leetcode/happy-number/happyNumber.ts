@@ -16,8 +16,8 @@ const squareRoot = (numbers: number[]): number => (
   numbers.reduce((acc, n) => acc + (n * n), 0)
 )
 
-const happyNumber = arr => (
-  happyNumberR(arr, new Map())
+const happyNumber = n => (
+  happyNumberR(n, new Map())
 )
 
 export {
