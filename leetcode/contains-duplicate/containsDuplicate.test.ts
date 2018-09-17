@@ -1,17 +1,17 @@
-import { containsDublicate } from './containsDublicate';
+import { containsDuplicate } from './containsDuplicate';
 
-describe('containsDublicate', () => {
+describe('containsDuplicate', () => {
 
   test('simple numbers with dublicates', () => {
-    expect(containsDublicate([1, 2, 3, 1])).toBe(true);
+    expect(containsDuplicate([1, 2, 3, 1])).toBe(true);
   });
 
   test('simple numbers without dublicates', () => {
-    expect(containsDublicate([1, 2, 3, 5])).toBe(false);
+    expect(containsDuplicate([1, 2, 3, 5])).toBe(false);
   });
 
   test('simple numbers with dublicates in the middle', () => {
-    expect(containsDublicate([7, 2, 1, 1, 3, 9, 15])).toBe(true);
+    expect(containsDuplicate([7, 2, 1, 1, 3, 9, 15])).toBe(true);
   });
 
 });
