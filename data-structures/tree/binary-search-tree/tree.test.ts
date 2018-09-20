@@ -1,7 +1,9 @@
 import {
   insert,
   node,
-  traverseInOrder
+  traverseInOrder,
+  traversePreOrder,
+  traversePostOrder
 } from './tree';
 
 describe('node', () => {
@@ -61,8 +63,8 @@ describe('traverseInOrder', () => {
     insert(root, node(20));
     insert(root, node(23));
     insert(root, node(27));
-    const visitor = population => node => population.push(node.value);
     const population = [];
+    const visitor = population => node => population.push(node.value);
     traverseInOrder(root, visitor(population));
     expect(population).toEqual([15, 19, 20, 21, 23, 25, 27]);
   });
@@ -75,9 +77,41 @@ describe('traverseInOrder', () => {
     insert(root, node(23));
     insert(root, node(25));
     insert(root, node(27));
-    const visitor = population => node => population.push(node.value);
     const population = [];
+    const visitor = population => node => population.push(node.value);
     traverseInOrder(root, visitor(population));
     expect(population).toEqual([15, 19, 20, 21, 23, 25, 27]);
+  });
+});
+
+describe('traversePreOrder', () => {
+  test('multiple nodes, balanced tree', () => {
+    const root = node(21);
+    insert(root, node(19));
+    insert(root, node(25));
+    insert(root, node(15));
+    insert(root, node(20));
+    insert(root, node(23));
+    insert(root, node(27));
+    const population = [];
+    const visitor = population => node => population.push(node.value);
+    traversePreOrder(root, visitor(population));
+    expect(population).toEqual([21, 19, 15, 20, 25, 23, 27]);
+  });
+});
+
+describe('traversePostOrder', () => {
+  test('multiple nodes, balanced tree', () => {
+    const root = node(21);
+    insert(root, node(19));
+    insert(root, node(25));
+    insert(root, node(15));
+    insert(root, node(20));
+    insert(root, node(23));
+    insert(root, node(27));
+    const population = [];
+    const visitor = population => node => population.push(node.value);
+    traversePostOrder(root, visitor(population));
+    expect(population).toEqual([15, 20, 19, 23, 27, 25, 21]);
   });
 });
