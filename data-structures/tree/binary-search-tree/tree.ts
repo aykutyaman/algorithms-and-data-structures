@@ -26,36 +26,61 @@ const insert = (current: Node, toInsert: Node): void => {
 }
 
 // left, current, right
-const traverseInOrder = (node: Node, visitor: Function): void => {
-  if (node) {
-    node.left && traverseInOrder(node.left, visitor);
-    visitor(node);
-    node.right && traverseInOrder(node.right, visitor);
+const traverseInOrder = (current: Node, visitor: Function): void => {
+  if (current) {
+    current.left && traverseInOrder(current.left, visitor);
+    visitor(current);
+    current.right && traverseInOrder(current.right, visitor);
   }
 }
 
 // current, left, right
-const traversePreOrder = (node: Node, visitor: Function): void => {
-  if (node) {
-    visitor(node);
-    node.left && traversePreOrder(node.left, visitor);
-    node.right && traversePreOrder(node.right, visitor);
+const traversePreOrder = (current: Node, visitor: Function): void => {
+  if (current) {
+    visitor(current);
+    current.left && traversePreOrder(current.left, visitor);
+    current.right && traversePreOrder(current.right, visitor);
   }
 }
 
 // left, right, current
-const traversePostOrder = (node: Node, visitor: Function): void => {
-  if (node) {
-    node.left && traversePostOrder(node.left, visitor);
-    node.right && traversePostOrder(node.right, visitor);
-    visitor(node);
+const traversePostOrder = (current: Node, visitor: Function): void => {
+  if (current) {
+    current.left && traversePostOrder(current.left, visitor);
+    current.right && traversePostOrder(current.right, visitor);
+    visitor(current);
   }
 }
 
+const find = (current: Node, value: any): Node | null => {
+  if (current.value === value) {
+    return current;
+  }
+  return value < current.value
+    ? current.left && find(current.left, value)
+    : current.right && find(current.right, value);
+}
+
+const findMinimum = (current: Node): Node | null => (
+  current.left === null
+    ? current
+    : findMinimum(current.left)
+)
+
+const findMaximum = (current: Node): Node | null => (
+  current.right === null
+    ? current
+    : findMaximum(current.right)
+)
+
+// TODO: implement map, reduce, filter https://bit.ly/2PQA7Rt
 export {
   node,
   insert,
   traverseInOrder,
   traversePreOrder,
-  traversePostOrder
+  traversePostOrder,
+  find,
+  findMinimum,
+  findMaximum
 }

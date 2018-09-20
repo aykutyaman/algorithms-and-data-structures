@@ -3,7 +3,10 @@ import {
   node,
   traverseInOrder,
   traversePreOrder,
-  traversePostOrder
+  traversePostOrder,
+  find,
+  findMinimum,
+  findMaximum
 } from './tree';
 
 describe('node', () => {
@@ -113,5 +116,45 @@ describe('traversePostOrder', () => {
     const visitor = population => node => population.push(node.value);
     traversePostOrder(root, visitor(population));
     expect(population).toEqual([15, 20, 19, 23, 27, 25, 21]);
+  });
+});
+
+describe('find', () => {
+  test('find a node', () => {
+    const root = node(21);
+    insert(root, node(19));
+    insert(root, node(25));
+    insert(root, node(15));
+    insert(root, node(20));
+    insert(root, node(23));
+    insert(root, node(27));
+    expect(find(root, 99)).toBeNull();
+    expect(find(root, 15).value).toBe(15);
+  });
+});
+
+describe('getMinimum', () => {
+  test('find minimum value', () => {
+    const root = node(21);
+    insert(root, node(19));
+    insert(root, node(25));
+    insert(root, node(15));
+    insert(root, node(20));
+    insert(root, node(23));
+    insert(root, node(27));
+    expect(findMinimum(root).value).toBe(15);
+  });
+});
+
+describe('getMaximum', () => {
+  test('find maximum value', () => {
+    const root = node(21);
+    insert(root, node(19));
+    insert(root, node(25));
+    insert(root, node(15));
+    insert(root, node(20));
+    insert(root, node(23));
+    insert(root, node(27));
+    expect(findMaximum(root).value).toBe(27);
   });
 });
