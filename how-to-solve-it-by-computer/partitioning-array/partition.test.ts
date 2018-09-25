@@ -26,3 +26,26 @@ test('partition multiple numbers', () => {
   partition(given, pivot);
   expect(given).toEqual(expected);
 });
+
+test('move single from left to right', () => {
+  const given = [10, 30, 16, 40];
+  const expected = [10, 16, 30, 40];
+  const pivot = 17;
+  partition(given, pivot);
+  expect(given).toEqual(expected);
+});
+
+const isPartitioned = (arr: number[], pivot: number, partitionIndex: number): Boolean => (
+  arr.every((value, index) => (
+    (index < partitionIndex)
+      ? (value < pivot) // left half
+      : (value >= pivot) // right half
+  ))
+);
+test('random input', () => {
+  // create 10000 random integers in the range 0..100
+  const given = Array(10000).fill(0).map(() => Math.floor(Math.random() * 100));
+  const pivot = 50;
+  const partitionIndex = partition(given, pivot);
+  expect(isPartitioned(given, pivot, partitionIndex)).toBe(true);
+});
