@@ -1,8 +1,5 @@
-const NewIndex = (i: number, k: number, length: number): number => {
-  return (length - (k % length) + i) % length;
-}
-
-const shift = (items: any[], k: number): void => {
+// https://www.geeksforgeeks.org/array-rotation/
+const shiftInPlace = (items: any[], k: number): void => {
   let currentIndex = 0;
   let newIndex = 0;
   let temp = items[currentIndex];
@@ -25,16 +22,15 @@ const shift = (items: any[], k: number): void => {
   }
 }
 
-
-// https://hackernoon.com/fun-with-array-rotations-add4a335d79a
-const rotate = (arr: number[]) => {
-  for (let i = 0; i < arr.length - 1; i++) {
-    [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-  }
-  return arr;
-}
+// compute the new index of the current one
+const nextIndex = (i: number, k: number, length: number): number => (
+  (i + k) % length
+)
+const shift = (arr: number[], k: number) => (
+  arr.map((item, i, a) => (a[nextIndex(i, k, a.length)]))
+)
 
 export {
-  shift,
-  rotate
+  shiftInPlace,
+  shift
 }
