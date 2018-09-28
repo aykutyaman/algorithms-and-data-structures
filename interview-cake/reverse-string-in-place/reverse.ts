@@ -1,20 +1,26 @@
-const index = (length, i) => length - i - 1;
-const middle = length => Math.floor(length / 2);
+const reverse = (chars: string[]): void => {
+  // initialize left and right
+  let left = 0;
+  let right = chars.length - 1;
 
-// swap ith element with kth element in the array
-const swap = (array, i, k) => {
-  let temp = array[i];
-  array[i] = array[k];
-  array[k] = temp;
-}
+  // while we are not in the middle of the array
+  while (left < right) {
 
-const reverse = (chars: string[]) => {
-  for (let left = 0; left < middle(chars.length); left++) { // loop until the middle
-    let right = index(chars.length, left); // find index to replace with
-    swap(chars, left, right); // swap chars
+    // swap left and right
+    [chars[left], chars[right]] = [chars[right], chars[left]];
+
+    // increment/decrement left and right
+    left++;
+    right--;
   }
 }
 
 export {
   reverse
 }
+
+/**
+  Complexity
+  - We iterate through array only once, so O(n) time cost
+  - We swap items in place, without creating and additional space, O(1) space cost
+*/
