@@ -1,14 +1,4 @@
-import { reverseCharacters, reverseWords } from './reverse';
-
-describe('reverseCharacters', () => {
-  test('single word', () => {
-    let input = 'hello'.split('');
-    reverseCharacters(input, 0, input.length - 1);
-    let actual = input.join('');
-    let expected = 'olleh';
-    expect(actual).toBe(expected);
-  });
-});
+import { reverseWords } from './reverse';
 
 describe('reverse', () => {
   test('empty string', () => {
@@ -16,6 +6,14 @@ describe('reverse', () => {
     reverseWords(input)
     let actual = input.join('');
     let expected = '';
+    expect(actual).toBe(expected);
+  });
+
+  test('single word', () => {
+    let input = 'cd'.split('');
+    reverseWords(input)
+    let actual = input.join('');
+    let expected = 'cd';
     expect(actual).toBe(expected);
   });
 

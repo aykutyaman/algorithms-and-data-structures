@@ -1,43 +1,49 @@
-const reverseCharacters = (
-  message: string[], left: number, right: number
-): void => {
-  while (left < right) {
-    let temp = message[left];
-    message[left] = message[right];
-    message[right] = temp;
-
-    left++;
-    right--;
+const reverse = (start: number, end: number, items: any[]): void => {
+  while (start < end) {
+    [items[start], items[end]] = [items[end], items[start]];
+    start++;
+    end--;
   }
 }
 
-const reverseWords = (words: string[]): void => {
+const endOfWord = (
+  i: number, chars: any[]
+): Boolean => (
+    chars[i] === ' ' || (i === chars.length)
+  )
 
-  // first we reverse all the characters in the entire words
-  reverseCharacters(words, 0, words.length - 1);
+const reverseWords = (message: string[]): void => {
+  // reverse all characters in the entire message
+  reverse(0, message.length - 1, message);
 
-  // this gives us the right word order, but each word backward
+  // set start end finish of a word
+  let start = 0;
 
-  // now we'll make the words forward again by reversing each word's characters
+  // iterate through reverse message
+  for (let i = 0; i <= message.length; i++) {
 
-  // we hold the index of the `start` of the current word as we look for the `end`
+    // if we arrived end of a word or end of the array
+    if (endOfWord(i, message)) {
 
-  let currentWordStartIndex = 0;
+      // reverse characters in each individual world
+      reverse(start, i - 1, message);
 
-  for (let i = 0; i <= words.length; i++) {
-
-    // found the end of the current word
-    if (i === words.length || words[i] === ' ') {
-
-      reverseCharacters(words, currentWordStartIndex, i - 1);
-
-      // if we haven't exhausted the string, our next word's start is one char ehad
-      currentWordStartIndex = i + 1;
+      // set start of next word
+      start = i + 1;
     }
   }
 }
 
 export {
-  reverseCharacters,
   reverseWords
 }
+
+/**
+  Complexity
+  - O(n) time cost
+  - O(1) space cost, in place replacement
+
+  Take away:
+  - solve a simpler version of the problem, and see if that gets us closer to a
+  solution for the original problem.
+*/
