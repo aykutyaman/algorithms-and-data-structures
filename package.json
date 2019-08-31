@@ -4,7 +4,9 @@
   "description": "",
   "main": "",
   "dependencies": {
-    "jest": "^23.5.0"
+    "array-permutation-simple": "0.0.3",
+    "jest": "^23.5.0",
+    "js-combinatorics": "^0.5.4"
   },
   "devDependencies": {
     "@types/jest": "^23.3.2",
